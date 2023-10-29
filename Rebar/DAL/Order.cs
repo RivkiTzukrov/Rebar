@@ -1,12 +1,24 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿namespace DAL;
 
-namespace DAL
+public class Order
 {
-    internal class Order
+    public Guid Id { get; set; }
+    public List<Shake> shakes { get; set; }
+    public double SumOfPrices { get; set; }
+    public string CustomerName { get; set; }
+    public DateTime Date { get; set; }
+    public double Discount { get; set; }
+
+    public Order()
     {
+        shakes = new List<Shake>();
+        Date = DateTime.Now;
+        Id = Guid.NewGuid();
+    }
+
+    public void AddShakeToOrder(Shake shake)
+    {
+        SumOfPrices += shake.PriceL;
+        shakes.Add(shake);
     }
 }
