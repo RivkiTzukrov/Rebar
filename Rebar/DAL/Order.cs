@@ -7,7 +7,7 @@ public class Order
     public double SumOfPrices { get; set; }
     public string CustomerName { get; set; }
     public DateTime Date { get; set; }
-    public double Discount { get; set; }
+    public List<Discount> Discounts { get; set; }
 
     public Order()
     {
