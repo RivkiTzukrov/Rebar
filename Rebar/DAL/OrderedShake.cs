@@ -1,12 +1,31 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿namespace DAL;
 
-namespace DAL
+public class OrderedShake
 {
-    internal class OrderedShake
+    public Guid Id { get; set; }
+    public string Name { get; set; }
+    public double Price { get; set; }
+    public Size Size { get; set; }
+
+    public OrderedShake()
     {
+        Id = Guid.NewGuid();
     }
+
+    //public List<OrderedShake> ConvertShakeToOrderedShake(List<Shake> shakes)
+    //{
+    //    List<OrderedShake> orderedShakes = new List<OrderedShake>();
+    //    foreach (var shake in shakes)
+    //    {
+    //        orderedShakes.Add(new OrderedShake(shake.Name, ));
+    //    }
+    //}
+}
+
+
+public enum Size
+{
+    S = 1,
+    M,
+    L
 }

@@ -1,20 +1,32 @@
-﻿namespace DAL;
+﻿using DAL.DataAccess;
+using DAL.Models;
+
+namespace DAL;
 
 public class Menu
 {
-    public List<Shake> Shakes { get; set; }
+    public List<ShakeModel> Shakes { get; set; }
+
     public Menu()
     {
-        Shakes = new List<Shake>();
+        InitializeShakes();
     }
 
-    public List<Shake> ShowMenu()
+    public async void InitializeShakes()
+    {
+        ShakeDataAccess shakedb = new ShakeDataAccess();
+        Shakes = await shakedb.GetAllShakes();
+    }
+
+    public List<ShakeModel> ShowMenu()
     {
         return Shakes;
     }
 
-    public void AddShakeToMenu(Shake shake)
+    public void AddShakeToMenu(ShakeModel shake)
     {
-        Shakes.Add(shake);
+        ShakeDataAccess shakedb = new ShakeDataAccess();
+        shakedb.CreateShake(shake);
+        InitializeShakes();
     }
 }

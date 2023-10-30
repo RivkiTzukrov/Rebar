@@ -1,6 +1,6 @@
-﻿namespace DAL;
+﻿namespace DAL.Models;
 
-public class Shake
+public class ShakeModel
 {
     public Guid Id { get; set; }
     public string Name { get; set; }
@@ -8,4 +8,9 @@ public class Shake
     public double PriceL { get; set; }
     public double PriceM { get; set; }
     public double PriceS { get; set; }
+
+    public ShakeModel()
+    {
+        Id = Guid.NewGuid();
+    }
 }
