@@ -21,11 +21,13 @@ public class AccountDataAccess : DataAccess
         return results.ToList();
     }
 
-    public async Task AddOrderToAccount(OrderModel order, AccountModel a)
+    public Task UpdateAccount(AccountModel account)
     {
         var accountsCollection = ConnectToMongo<AccountModel>(AccountCollection);
-        var filter = Builders.Filter.Eq();
-        var update = Builders<AccountModel>.Update.Push(a => a.Orders, order);
-        return Builders<OrderDataAccess>.Update.Push(filter, order);
+        var filter = Builders<AccountModel>.Filter.Eq("customerName", account.CustomerName);
+        return accountsCollection.ReplaceOneAsync(filter, account, new ReplaceOptions() { IsUpsert = true});
+        
+        //var update = Builders<AccountModel>.Update.Push("Account.$.Orders", order);
+        //await accountsCollection.FindOneAndUpdateAsync(filter, update);
     }
 }

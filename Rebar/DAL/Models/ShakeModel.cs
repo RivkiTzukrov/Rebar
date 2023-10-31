@@ -1,8 +1,14 @@
-﻿namespace DAL.Models;
+﻿using MongoDB.Bson.Serialization.Attributes;
+using MongoDB.Bson;
+
+namespace DAL.Models;
 
 public class ShakeModel
 {
-    public Guid Id { get; set; }
+    [BsonId]
+    [BsonRepresentation(BsonType.String)]
+
+    readonly Guid Id;
     public string Name { get; set; }
     public string Description { get; set; }
     public double PriceL { get; set; }

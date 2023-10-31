@@ -1,9 +1,15 @@
-﻿namespace DAL.Models;
+﻿using MongoDB.Bson.Serialization.Attributes;
+using MongoDB.Bson;
+
+namespace DAL.Models;
 
 public class AccountModel
 {
-    public string CustomerName { get; set; }
-    public Guid Id { get; set; }
+    [BsonId]
+    [BsonRepresentation(BsonType.String)]
+
+    readonly Guid Id;
+    public string CustomerName { get; }
     public List<Order> Orders { get; set; }
     public double SumOfOrders { get; set; }
 
