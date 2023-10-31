@@ -2,7 +2,7 @@
 
 public class OrderedShake
 {
-    readonly Guid Id;
+    public Guid Id { get; }
     public string Name { get; set; }
     public double Price { get; set; }
     public Size Size { get; set; }

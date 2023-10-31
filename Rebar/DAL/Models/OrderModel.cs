@@ -9,7 +9,7 @@ public class OrderModel
     [BsonId]
     [BsonRepresentation(BsonType.String)]
 
-    public Guid Id { get; set; }
+    public Guid Id { get;}
     public string CustomerName { get; set; }
     public DateTime OrderCreated { get; set; }
     public DateTime OrderCompleted { get; set; }
