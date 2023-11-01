@@ -24,7 +24,7 @@ public class ShakeController :BaseController
     }
 
     [HttpPost]
-    public async Task PostShake(ShakeModel shake)
+    public async Task Post(ShakeModel shake)
     {
         await Task.FromResult(_dataAccess.CreateShake(shake));
     }

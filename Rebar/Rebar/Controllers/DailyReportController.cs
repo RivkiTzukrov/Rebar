@@ -22,4 +22,10 @@ public class DailyReportController : BaseController
         }
         return await Task.FromResult(result);
     }
+
+    [HttpPost]
+    public async Task PostShake(DailyReportModel dailyReport)
+    {
+        await Task.FromResult(_dailyReportDataAccess.CreateDailyReport(dailyReport));
+    }
 }

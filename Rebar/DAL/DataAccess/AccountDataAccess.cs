@@ -24,10 +24,18 @@ public class AccountDataAccess : DataAccess
     public Task UpdateAccount(AccountModel account)
     {
         var accountsCollection = ConnectToMongo<AccountModel>(AccountCollection);
-        var filter = Builders<AccountModel>.Filter.Eq("customerName", account.CustomerName);
-        return accountsCollection.ReplaceOneAsync(filter, account, new ReplaceOptions() { IsUpsert = true});
-        
+        var filter = Builders<AccountModel>.Filter.Eq(a => a.Id, account.Id);
+        return accountsCollection.ReplaceOneAsync(filter, account, new ReplaceOptions() { IsUpsert = true });
+
         //var update = Builders<AccountModel>.Update.Push("Account.$.Orders", order);
         //await accountsCollection.FindOneAndUpdateAsync(filter, update);
+    }
+
+    public Task UpdateAccount(OrderModel order)
+    {
+        var accountsCollection = ConnectToMongo<AccountModel>(AccountCollection);
+        var filter = Builders<AccountModel>.Filter.Eq(a => a.CustomerName, order.CustomerName);
+        var update = Builders<AccountModel>.Update.Push("Account.Orders", order);
+        return accountsCollection.FindOneAndUpdateAsync(filter, update);
     }
 }

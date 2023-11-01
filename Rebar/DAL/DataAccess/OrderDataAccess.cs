@@ -16,7 +16,7 @@ public class OrderDataAccess : DataAccess
     public async Task<List<OrderModel>> GetTodaysOrders()
     {
         var orderCollection = ConnectToMongo<OrderModel>(OrderCollection);
-        var results = await orderCollection.FindAsync(o=> o.OrderCompleted.Date == DateTime.Today);
+        var results = await orderCollection.FindAsync(o=> o.OrderCompleted.Date == DateTime.Now.Date);
         return results.ToList();
     }
 }

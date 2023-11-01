@@ -8,8 +8,8 @@ public class AccountModel
     [BsonId]
     [BsonRepresentation(BsonType.String)]
 
-    readonly Guid Id;
-    public string CustomerName { get; }
+    public Guid Id { get; set; }
+    public string CustomerName { get; set; }
     public List<Order> Orders { get; set; }
     public double SumOfOrders { get; set; }
 

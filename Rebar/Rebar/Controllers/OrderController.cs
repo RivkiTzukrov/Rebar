@@ -25,11 +25,8 @@ public class OrderController : BaseController
     }
 
     [HttpPost]
-    public async Task Post()
+    public async Task Post(Order order)
     {
-        List<Discount> dis = new List<Discount> { new Discount() { Description= "birthday", Percent = 0.15} };
-
-        Order order = new Order() { CustomerName="Davy", shakes=new List<OrderedShake>() { }, Discounts =dis , SumOfPrices=3};
         if (order == null || order.shakes.Count() > 9 || order.CustomerName == null)
         {
             throw new Exception("Add order failed due to invalid input");

@@ -1,5 +1,4 @@
-﻿
-using DAL.DataAccess;
+﻿using DAL.DataAccess;
 using DAL.Models;
 using Microsoft.AspNetCore.Mvc;
 
@@ -33,5 +32,11 @@ public class AccountController : BaseController
             await Task.FromResult(NoContent());
         }
         await Task.FromResult(result);
+    }
+
+    [HttpPost]
+    public async Task Post(AccountModel account)
+    {
+        await Task.FromResult(_dataAccess.CreateAccount(account));
     }
 }
